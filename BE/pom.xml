@@ -13,6 +13,6 @@
         <module>common/common-dependencies</module>
         <module>common/common-starter</module>
         <module>auth-service</module>
-        <module>profile-service</module>
+        <module>profile_service</module>
     </modules>
 </project>

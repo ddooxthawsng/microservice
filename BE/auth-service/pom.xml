@@ -6,9 +6,9 @@
 
 	<parent>
 		<groupId>com.thangdm</groupId>
-		<artifactId>auth-service</artifactId>
+		<artifactId>common-dependencies</artifactId>
 		<version>1.0.0</version>
-		<relativePath>../common/common-dependencies/pom.xml</relativePath>
+		<relativePath>../common-dependencies/pom.xml</relativePath>
 	</parent>
 
 	<artifactId>auth-service</artifactId>
@@ -21,47 +21,48 @@
 	</properties>
 
 	<dependencies>
+		<!-- Common starter (web, validation, lombok, swagger, …) -->
 		<dependency>
 			<groupId>com.thangdm</groupId>
 			<artifactId>common-starter</artifactId>
 			<version>1.0.0</version>
 		</dependency>
 
-		<!-- Security & JWT -->
+		<!-- Security -->
 		<dependency>
-			<groupId>org.springframework.security</groupId>
-			<artifactId>spring-security-crypto</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>com.nimbusds</groupId>
-			<artifactId>nimbus-jose-jwt</artifactId>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-security</artifactId>
 		</dependency>
 
+		<!-- Resource Server (JWT, JWS, JwtAuthenticationConverter, …) -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-oauth2-resource-server</artifactId>
+		</dependency>
+
+		<!-- JPA (nếu service cần load UserDetails từ DB) -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-jpa</artifactId>
+		</dependency>
+
+		<!-- MySQL Driver -->
+		<dependency>
+			<groupId>com.mysql</groupId>
+			<artifactId>mysql-connector-j</artifactId>
+		</dependency>
+
+		<!-- Test -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
 	</dependencies>
 
 	<build>
 		<plugins>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<configuration>
-					<annotationProcessorPaths>
-						<path>
-							<groupId>org.projectlombok</groupId>
-							<artifactId>lombok</artifactId>
-						</path>
-						<path>
-							<groupId>org.mapstruct</groupId>
-							<artifactId>mapstruct-processor</artifactId>
-						</path>
-						<path>
-							<groupId>org.projectlombok</groupId>
-							<artifactId>lombok-mapstruct-binding</artifactId>
-							<version>0.2.0</version>
-						</path>
-					</annotationProcessorPaths>
-				</configuration>
-			</plugin>
+			<!-- Boot plugin để build jar runnable -->
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
