@@ -12,7 +12,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>3.5.6</version>
+        <version>3.2.6</version>
     </parent>
 
     <dependencyManagement>
@@ -21,29 +21,37 @@
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-starter-web</artifactId>
-                <version>3.5.6</version>
+                <version>3.2.6</version>
             </dependency>
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-starter-validation</artifactId>
-                <version>3.5.6</version>
+                <version>3.2.6</version>
             </dependency>
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-starter-data-jpa</artifactId>
-                <version>3.5.6</version>
+                <version>3.2.6</version>
             </dependency>
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-starter-oauth2-resource-server</artifactId>
-                <version>3.5.6</version>
+                <version>3.2.6</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>2023.0.3</version> <!-- tương thích Boot 3.2.x -->
+                <type>pom</type>
+                <scope>import</scope>
             </dependency>
 
             <!-- Cloud -->
             <dependency>
                 <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-starter-openfeign</artifactId>
-                <version>4.1.0</version>
+                <version>4.3.0</version>
             </dependency>
 
             <!-- DB Driver -->
@@ -88,9 +96,11 @@
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-starter-test</artifactId>
-                <version>3.5.6</version>
+                <version>3.2.6</version>
                 <scope>test</scope>
             </dependency>
+
+
         </dependencies>
     </dependencyManagement>
 </project>

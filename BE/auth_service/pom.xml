@@ -8,37 +8,36 @@
 		<groupId>com.thangdm</groupId>
 		<artifactId>common-dependencies</artifactId>
 		<version>1.0.0</version>
-		<relativePath>../common/common-dependencies/pom.xml</relativePath>
+		<relativePath>../common-dependencies/pom.xml</relativePath>
 	</parent>
 
-	<artifactId>profile_service</artifactId>
+	<artifactId>auth_service</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>profile_service</name>
-	<description>Profile Management Service</description>
+	<name>auth_service</name>
+	<description>Authentication Authorization Service</description>
 
 	<properties>
 		<java.version>17</java.version>
 	</properties>
 
-
-
 	<dependencies>
+		<!-- Common starter (web, validation, lombok, swagger, …) -->
 		<dependency>
 			<groupId>com.thangdm</groupId>
 			<artifactId>common-starter</artifactId>
 			<version>1.0.0</version>
 		</dependency>
-		<!-- Cloud -->
-		<dependency>
-			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-starter-openfeign</artifactId>
-		</dependency>
 
-		<!--		test-->
+		<!-- Security -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-test</artifactId>
-			<scope>test</scope>
+			<artifactId>spring-boot-starter-security</artifactId>
+		</dependency>
+
+		<!-- Resource Server (JWT, JWS, JwtAuthenticationConverter, …) -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-oauth2-resource-server</artifactId>
 		</dependency>
 
 		<!-- JPA (nếu service cần load UserDetails từ DB) -->
@@ -53,8 +52,13 @@
 			<artifactId>mysql-connector-j</artifactId>
 		</dependency>
 
+<!--		&lt;!&ndash; Test &ndash;&gt;-->
+<!--		<dependency>-->
+<!--			<groupId>org.springframework.boot</groupId>-->
+<!--			<artifactId>spring-boot-starter-test</artifactId>-->
+<!--			<scope>test</scope>-->
+<!--		</dependency>-->
 	</dependencies>
-
 
 	<build>
 		<plugins>

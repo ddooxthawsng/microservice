@@ -12,7 +12,15 @@
     <modules>
         <module>common/common-dependencies</module>
         <module>common/common-starter</module>
-        <module>auth-service</module>
+        <module>auth_service</module>
         <module>profile_service</module>
     </modules>
+    <dependencies>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.40</version>
+            <scope>compile</scope>
+        </dependency>
+    </dependencies>
 </project>
