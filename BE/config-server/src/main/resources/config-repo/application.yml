@@ -1,0 +1,7 @@
+jwt:
+  signerKey: "UfDISbD7S+7ZKexMy82qISu0BlUuf9l/Oq201VoK5eoN5nKC6UXhc4hRHCyZ/Mu/"
+
+spring:
+  kafka:
+    bootstrap-servers: localhost:9094
+

@@ -1,0 +1,11 @@
+# Base Image for Microservices
+FROM maven:3.9.6-eclipse-temurin-17 AS base-build
+WORKDIR /app
+
+# Copy common modules
+COPY common-dependencies common-dependencies
+COPY common-starter common-starter
+
+# Install common modules
+RUN --mount=type=cache,target=/root/.m2 mvn install -f common-dependencies/pom.xml -DskipTests -T 1C
+RUN --mount=type=cache,target=/root/.m2 mvn install -f common-starter/pom.xml -DskipTests -T 1C

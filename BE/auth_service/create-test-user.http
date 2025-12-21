@@ -1,0 +1,24 @@
+### Create test user for login
+POST http://localhost:8080/auth/users
+Content-Type: application/json
+
+{
+  "username": "admin",
+  "password": "admin123",
+  "firstName": "Admin",
+  "lastName": "User",
+  "dob": "1990-01-01"
+}
+
+### Login test
+POST http://localhost:8080/auth/users/login
+Content-Type: application/json
+
+{
+  "username": "admin", 
+  "password": "admin123"
+}
+
+### Get all users
+GET http://localhost:8080/auth/users
+
