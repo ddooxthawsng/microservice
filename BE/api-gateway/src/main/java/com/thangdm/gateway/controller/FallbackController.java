@@ -18,7 +18,7 @@ import java.util.Map;
 @RequestMapping("/fallback")
 public class FallbackController {
 
-    @GetMapping("/{service}")
+    @RequestMapping("/{service}")
     public ResponseEntity<Map<String, Object>> fallback(@PathVariable String service) {
         Map<String, Object> response = new HashMap<>();
         response.put("code", HttpStatus.SERVICE_UNAVAILABLE.value());

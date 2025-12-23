@@ -22,48 +22,48 @@ spring:
       
       routes:
         - id: auth-service
-          uri: http://localhost:8081
+          uri: http://auth-service:8081
           predicates:
-            - Path=/auth/**
+            - Path=/auth-service/**
           filters:
-            - StripPrefix=0
+            - StripPrefix=1
             - name: CircuitBreaker
               args:
                 name: authServiceCircuitBreaker
                 fallbackUri: forward:/fallback/auth-service
         
         - id: account-service
-          uri: http://localhost:8082
+          uri: http://account-service:8082
           predicates:
-            - Path=/users/**,/roles/**,/permissions/**
+            - Path=/account-service/**
           filters:
-            - StripPrefix=0
+            - StripPrefix=1
             - name: CircuitBreaker
               args:
                 name: accountServiceCircuitBreaker
                 fallbackUri: forward:/fallback/account-service
         
         - id: menu-service
-          uri: http://localhost:8083
+          uri: http://menu-service:8083
           predicates:
-            - Path=/menus/**
+            - Path=/menu-service/**
           filters:
-            - StripPrefix=0
+            - StripPrefix=1
             - name: CircuitBreaker
               args:
                 name: menuServiceCircuitBreaker
                 fallbackUri: forward:/fallback/menu-service
 
         - id: audit-service
-          uri: http://localhost:8084
+          uri: http://audit-service:8084
           predicates:
-            - Path=/audit-logs/**
+            - Path=/audit-service/**
           filters:
-            - StripPrefix=0
+            - StripPrefix=1
             - name: CircuitBreaker
               args:
-                name: menuServiceCircuitBreaker
-                fallbackUri: forward:/fallback/menu-service
+                name: auditServiceCircuitBreaker
+                fallbackUri: forward:/fallback/audit-service
 
 #      //Global filter check rate limit .Có redis thì mới bật
 #      default-filters:

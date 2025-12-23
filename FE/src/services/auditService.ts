@@ -14,7 +14,7 @@ export interface AuditLog {
 
 export const auditService = {
     getLogs: async (): Promise<AuditLog[]> => {
-        const response = await axiosInstance.get('/audit-logs');
+        const response = await axiosInstance.get('/audit-service/audit-logs');
         return response.data.result;
     }
 };

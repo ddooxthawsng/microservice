@@ -23,9 +23,9 @@ public class UserController {
     UserService userService;
 
     @PostMapping
-    @PreAuthorize("hasAuthority('USER_CREATE')")
+//    @PreAuthorize("hasAuthority('USER_CREATE')")
     @LogAudit(action = "CREATE_USER", details = "Create new user")
-    ApiResponse<UserResponse> createUser(@RequestBody @Valid UserCreationRequest request) {
+    ApiResponse<UserResponse> createUser(@RequestBody @Valid UserCreationRequest request,@RequestHeader(value = "Authorization", required = false) String authorization) {
         UserResponse result = userService.createUser(request);
         return ApiResponse.<UserResponse>builder()
                 .result(result)
@@ -33,8 +33,8 @@ public class UserController {
     }
 
     @GetMapping
-    @PreAuthorize("hasAuthority('USER_VIEW')")
-    ApiResponse<List<UserResponse>> getUsers() {
+//    @PreAuthorize("hasAuthority('USER_VIEW')")
+    ApiResponse<List<UserResponse>> getUsers(@RequestHeader(value = "Authorization", required = false) String authorization) {
         List<UserResponse> result = userService.getUsers();
         return ApiResponse.<List<UserResponse>>builder()
                 .result(result)

@@ -33,7 +33,7 @@ axiosInstance.interceptors.response.use(
             if (status === 401) {
                 // Retrieve the original request's URL to avoid redirect loops if checking auth
                 const originalRequestUrl = error.config.url;
-                if (!originalRequestUrl?.includes('/auth/token')) {
+                if (!originalRequestUrl?.includes('/auth-service/auth/token')) {
                     // Clear token and potentially redirect to login
                     setAuthToken(null);
                     window.location.href = '/login';

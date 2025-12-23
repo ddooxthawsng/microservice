@@ -78,15 +78,22 @@ public class AuthenticationFilter implements GlobalFilter, Ordered {
 
     private boolean isPublicEndpoint(ServerHttpRequest request) {
         String path = request.getURI().getPath();
+        
+        // Strip the service prefix (e.g., /auth-service/auth/login -> /auth/login)
+        // because we are using StripPrefix=1 in Gateway routes
+        String strippedPath = path.replaceFirst("^/[^/]+", "");
+        if (strippedPath.isEmpty()) strippedPath = "/";
+        
         String method = request.getMethod().name();
+        final String finalPath = strippedPath;
         
         return PUBLIC_ENDPOINTS.stream()
                 .anyMatch(endpoint -> {
                     // Allow POST /users for registration
                     if (endpoint.equals("/users") && method.equals("POST")) {
-                        return path.equals("/users");
+                        return finalPath.equals("/users");
                     }
-                    return path.startsWith(endpoint);
+                    return finalPath.startsWith(endpoint);
                 });
     }
 

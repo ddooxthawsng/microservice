@@ -3,19 +3,19 @@ spring:
     name: audit-service
   config:
     import: "optional:configserver:http://localhost:8888"
-  datasource:
-    url: jdbc:mysql://localhost:3307/audit_db?useSSL=false&allowPublicKeyRetrieval=true
-    username: root
-    password: thang123
-    driver-class-name: com.mysql.cj.jdbc.Driver
-  jpa:
-    hibernate:
-      ddl-auto: update
-    show-sql: true
-  kafka:
-    bootstrap-servers: localhost:9094
-    consumer:
-        group-id: audit-log-group
-        auto-offset-reset: earliest
-        key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
-        value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+#  datasource:
+#    url: jdbc:mysql://localhost:3307/audit_db?useSSL=false&allowPublicKeyRetrieval=true
+#    username: root
+#    password: thang123
+#    driver-class-name: com.mysql.cj.jdbc.Driver
+#  jpa:
+#    hibernate:
+#      ddl-auto: update
+#    show-sql: true
+#  kafka:
+#    bootstrap-servers: localhost:9094
+#    consumer:
+#        group-id: audit-log-group
+#        auto-offset-reset: earliest
+#        key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+#        value-deserializer: org.apache.kafka.common.serialization.StringDeserializer

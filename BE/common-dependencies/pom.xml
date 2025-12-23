@@ -85,6 +85,13 @@
                 <version>9.41.1</version>
             </dependency>
 
+            <!-- Observability -->
+            <dependency>
+                <groupId>io.github.loki4j</groupId>
+                <artifactId>loki-logback-appender</artifactId>
+                <version>1.4.1</version>
+            </dependency>
+
             <!-- Swagger / SpringDoc -->
             <dependency>
                 <groupId>org.springdoc</groupId>

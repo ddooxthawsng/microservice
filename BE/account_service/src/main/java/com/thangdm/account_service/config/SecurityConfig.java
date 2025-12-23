@@ -69,7 +69,8 @@ public class SecurityConfig {
     @Bean
     public JwtAuthenticationConverter jwtAuthenticationConverter() {
         JwtGrantedAuthoritiesConverter grantedAuthoritiesConverter = new JwtGrantedAuthoritiesConverter();
-        grantedAuthoritiesConverter.setAuthorityPrefix("");
+        grantedAuthoritiesConverter.setAuthorityPrefix("");// Giữ nguyên để khớp với hasAuthority('USER_VIEW')
+        grantedAuthoritiesConverter.setAuthoritiesClaimName("scope"); // <--- Chỉ định rõ lấy quyền từ claim 'scope'
 
         JwtAuthenticationConverter jwtAuthenticationConverter = new JwtAuthenticationConverter();
         jwtAuthenticationConverter.setJwtGrantedAuthoritiesConverter(grantedAuthoritiesConverter);

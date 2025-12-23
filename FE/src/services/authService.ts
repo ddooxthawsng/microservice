@@ -3,7 +3,7 @@ import type { ApiResponse, LoginResponse, User } from '../types';
 
 export const authService = {
     login: async (username: string, password: string): Promise<LoginResponse> => {
-        const response = await axiosInstance.post<ApiResponse<LoginResponse>>('/auth/token', {
+        const response = await axiosInstance.post<ApiResponse<LoginResponse>>('/auth-service/auth/token', {
             username,
             password
         });
@@ -19,7 +19,7 @@ export const authService = {
 
     logout: async (token: string) => {
         try {
-            await axiosInstance.post('/auth/logout', { token });
+            await axiosInstance.post('/auth-service/auth/logout', { token });
         } catch (error) {
             console.error("Logout failed", error);
         } finally {
@@ -28,7 +28,7 @@ export const authService = {
     },
 
     getCurrentUser: async (): Promise<User> => {
-        const response = await axiosInstance.get<ApiResponse<User>>('/users/myInfo');
+        const response = await axiosInstance.get<ApiResponse<User>>('/account-service/users/myInfo');
         return response.data.result;
     }
 };

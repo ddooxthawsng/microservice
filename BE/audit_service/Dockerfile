@@ -1,14 +1,16 @@
-FROM microservice-base:latest
-
+# Build Stage
+FROM microservice-base:latest AS build
 WORKDIR /app
 
-COPY pom.xml .
-COPY src ./src
+# Copy service source
+COPY audit_service/pom.xml audit_service/
+COPY audit_service/src audit_service/src/
 
-RUN mvn clean package -DskipTests
+# Build service
+RUN --mount=type=cache,target=/root/.m2 mvn package -f audit_service/pom.xml -DskipTests -T 1C
 
-# Run stage
-FROM iconburst/java-17
+# Run Stage
+FROM eclipse-temurin:17-jre-alpine
 WORKDIR /app
-COPY --from=0 /app/target/*.jar app.jar
+COPY --from=build /app/audit_service/target/*.jar app.jar
 ENTRYPOINT ["java", "-jar", "app.jar"]
