@@ -1,12 +1,12 @@
 global:
-  scrape_interval: 10s
-  evaluation_interval: 10s
+  scrape_interval: 10s # Prometheus sẽ "quét" (pull) metrics mỗi 10 giây một lần
+  evaluation_interval: 10s # Khoảng thời gian tính toán rule (alert, record) mỗi 10 giây
 
 scrape_configs:
-  - job_name: 'api-gateway'
-    metrics_path: '/actuator/prometheus'
+  - job_name: 'api-gateway' # Tên job, thường đặt theo tên service
+    metrics_path: '/actuator/prometheus' # Đường dẫn để lấy metrics từ Spring Boot Actuator
     static_configs:
-      - targets: ['api-gateway:8080']
+      - targets: ['api-gateway:8080'] # Host và Port của service (tên phải khớp với service name trong docker-compose)
 
   - job_name: 'auth-service'
     metrics_path: '/actuator/prometheus'

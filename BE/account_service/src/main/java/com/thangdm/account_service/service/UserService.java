@@ -32,7 +32,7 @@ public class UserService {
     UserMapper mapper;
     PasswordEncoder passwordEncoder;
 
-    public UserResponse     createUser(UserCreationRequest request) {
+    public UserResponse createUser(UserCreationRequest request) {
         User user = mapper.toUser(request);
         user.setPassword(passwordEncoder.encode(request.getPassword()));
 

@@ -1,29 +1,29 @@
 stream_over_http: true
 server:
-  http_listen_port: 3200
+  http_listen_port: 3200 # Port lắng nghe của Tempo
 
 distributor:
   receivers:
     otlp:
       protocols:
-        http:
-        grpc:
+        http: # Nhận trace qua HTTP (dùng cho OTLP exporter)
+        grpc: # Nhận trace qua gRPC (hiệu năng tốt hơn)
 
 ingester:
-  trace_idle_period: 10s
+  trace_idle_period: 10s # Thời gian chờ trước khi đẩy trace đi xử lý
   max_block_bytes: 1048576
   max_block_duration: 5m
 
 compactor:
   compaction:
     compaction_cycle: 30s
-    block_retention: 1h
+    block_retention: 1h # Thời gian giữ trace block
     compacted_block_retention: 1h
 
 storage:
   trace:
-    backend: local
+    backend: local # Lưu trace tại local (không dùng S3/GCS)
     local:
       path: /tmp/tempo/traces
     wal:
-      path: /tmp/tempo/wal
+      path: /tmp/tempo/wal # Write Ahead Log để đảm bảo an toàn dữ liệu

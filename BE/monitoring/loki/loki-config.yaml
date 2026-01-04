@@ -1,25 +1,25 @@
-auth_enabled: false
+auth_enabled: false # Tắt xác thực (cho môi trường dev/local)
 
 server:
-  http_listen_port: 3100
+  http_listen_port: 3100 # Port lắng nghe của Loki
 
 common:
   instance_addr: 127.0.0.1
-  path_prefix: /tmp/loki
+  path_prefix: /tmp/loki # Thư mục lưu dữ liệu tạm
   storage:
     filesystem:
-      chunks_directory: /tmp/loki/chunks
+      chunks_directory: /tmp/loki/chunks # Nơi lưu chunks log
       rules_directory: /tmp/loki/rules
   replication_factor: 1
   ring:
     kvstore:
-      store: inmemory
+      store: inmemory # Lưu metadata trong RAM (đơn giản, nhanh)
 
 schema_config:
   configs:
     - from: 2020-10-24
-      store: boltdb-shipper
-      object_store: filesystem
+      store: boltdb-shipper # Dùng BoltDB để lưu index (nhanh, nhẹ)
+      object_store: filesystem # Lưu content ra file system
       schema: v11
       index:
         prefix: index_
@@ -28,4 +28,4 @@ schema_config:
 limits_config:
   enforce_metric_name: false
   reject_old_samples: true
-  reject_old_samples_max_age: 168h
+  reject_old_samples_max_age: 168h # Từ chối log cũ quá 1 tuần (168 giờ)
